@@ -1,9 +1,9 @@
 import React from "react";
-import "./styles/Content.css"
+import c from "./Content.module.css"
 
 const Content = () =>{
     return (
-        <div className='content'>
+        <div className={c.content}>
             <div>
                 info
             </div>

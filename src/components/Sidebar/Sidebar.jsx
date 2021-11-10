@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../logo192.png";
-import sidebar from "./styles/Sidebar.module.css"
+import logo from "../../logo192.png";
+import sidebar from "./Sidebar.module.css"
 
 const Sidebar = () => {
     return (
