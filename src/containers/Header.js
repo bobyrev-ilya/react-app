@@ -1,11 +1,11 @@
+import React from "react";
+import logo from "../logo192.png"
+
 const Header = () => {
     return (
-        <div>
-            <a>1</a>
-            <a>1</a>
-            <a>1</a>
-            <a>1</a>
-        </div>
+        <header className="header">
+            <img src={logo} alt={"logo"}/>
+        </header>
     );
 }
 
