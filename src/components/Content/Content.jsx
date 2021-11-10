@@ -1,11 +1,10 @@
 import React from "react";
-import c from "./Content.module.css"
 
-const Content = () =>{
+const Content = () => {
     return (
-        <div className={c.content}>
+        <div>
             <div>
-                info
+                news
             </div>
             <div>
                 content
