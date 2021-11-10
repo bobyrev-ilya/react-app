@@ -9,12 +9,12 @@ const Sidebar = () => {
                 <img src={logo} alt={"logo"}/>
             </div>
             <div className={sidebar.item}>
-                <a href='content'>
+                <a href='/content'>
                     Content
                 </a>
             </div>
             <div className={sidebar.item}>
-                <a href='info'>
+                <a href='/info'>
                     Info
                 </a>
             </div>
