@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/store"
+import store from "./redux/redux-store"
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -15,7 +15,7 @@ export let rendererEntire = () => {
     );
 }
 
-rendererEntire(store.getState());
+rendererEntire();
 
 store.subscribe(rendererEntire);
 

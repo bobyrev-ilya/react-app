@@ -4,7 +4,7 @@ import NewsItem from "./NewsItem/NewsItem";
 import {addNewActionCreator, updateTextActionCreator} from "../../redux/content-reducer";
 
 const Content = (props) => {
-
+    debugger
     let addNew = () => {
         props.dispatch(addNewActionCreator());
     }
