@@ -1,17 +1,16 @@
 import React from "react";
 import s from "./Content.module.css"
 import NewsItem from "./NewsItem/NewsItem";
-import {addNewActionCreator, updateTextActionCreator} from "../../redux/state";
+import {addNewActionCreator, updateTextActionCreator} from "../../redux/content-reducer";
 
 const Content = (props) => {
-    let newsElement = React.createRef();
 
     let addNew = () => {
         props.dispatch(addNewActionCreator());
     }
 
-    let onPostChange = () => {
-        let text = newsElement.current.value;
+    let onPostChange = (e) => {
+        let text = e.target.value;
         props.dispatch(updateTextActionCreator(text));
     }
 
@@ -20,7 +19,7 @@ const Content = (props) => {
             <div>
                 <h3>My news</h3>
                 <div>
-                    <textarea ref={newsElement} onChange={onPostChange} value={props.state.newText}/>
+                    <textarea onChange={onPostChange} value={props.state.newText}/>
                 </div>
                 <div>
                     <button onClick={addNew}>Add news</button>
