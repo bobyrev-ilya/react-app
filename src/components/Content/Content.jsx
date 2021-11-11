@@ -6,13 +6,12 @@ import Comment from "./Comment/Comment";
 
 const Content = (props) => {
     return (
-
         <div className={s.content}>
             <div className={s.news}>
-                {props.news.map(item => (<NewsItem id={item.id} title={item.title}/>))}
+                {props.state.news.map(item => (<NewsItem id={item.id} title={item.title}/>))}
             </div>
             <div className={s.comment}>
-                {props.comments.map(c => (<Comment desc={c.desc}/>))}
+                {props.state.comments.map(c => (<Comment desc={c.desc}/>))}
             </div>
         </div>
     );

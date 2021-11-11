@@ -16,7 +16,7 @@ const App = (props) => {
                     <Routes>
                         <Route path='/' element={<Info/>}/>
                         <Route path='/info' element={<Info/>}/>
-                        <Route path='/content/*' element={<Content comments={props.comments} news={props.news}/>}/>
+                        <Route path='/content/*' element={<Content state={props.state.contentPage}/>}/>
                     </Routes>
                 </div>
             </div>

@@ -3,20 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-let news = [
-    {id: 1, title: "11 oct"},
-    {id: 2, title: "12 oct"}
-]
-
-let comments = [
-    {id: 1, desc: "comm 1"},
-    {id: 2, desc: "comm 2"}
-]
+import state from "./redux/state"
 
 ReactDOM.render(
   <React.StrictMode>
-    <App news={news} comments={comments}/>
+    <App state = {state}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
