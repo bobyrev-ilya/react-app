@@ -9,8 +9,7 @@ export let rendererEntire = () => {
     ReactDOM.render(
         <App
             state={store.getState()}
-            addNews={store.addNews.bind(store)}  //методы жестко связаны с контекстом (this) store
-            updateText={store.updateText.bind(store)}
+            dispatch={store.dispatch.bind(store)}  //методы жестко связаны с контекстом (this) store
         />,
         document.getElementById('root')
     );

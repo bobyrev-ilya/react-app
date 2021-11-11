@@ -1,19 +1,18 @@
 import React from "react";
 import s from "./Content.module.css"
 import NewsItem from "./NewsItem/NewsItem";
-import Comment from "./Comment/Comment";
 
 let newsElement = React.createRef();
 
 const Content = (props) => {
     debugger
     let addNew = () => {
-        props.addNews();
+        props.dispatch({ type: 'ADD_NEWS' });
     }
 
     let onPostChange = () => {
         let text = newsElement.current.value;
-        props.updateText(text);
+        props.dispatch({ type: 'UPDATE_TEXT', text: text });
     }
 
     return (

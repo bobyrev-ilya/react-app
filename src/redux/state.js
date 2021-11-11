@@ -12,29 +12,36 @@ let store ={
             newText: 'sds'
         }
     },
+    _callsubscriber() {
+    },
+
     getState(){
         return this._state;
     },
-    _callsubscriber() {
-    },
-    addNews(){
-        let contentPage = this._state.contentPage;
-        let currentNews = contentPage.news;
-        currentNews.push({
-                id: currentNews[currentNews.length - 1].id + 1,
-                title: contentPage.newText == "" ? "- No title -" : contentPage.newText
-            }
-        );
-        this.updateText('')
-        this._callsubscriber();
-    },
-    updateText(text){
-        this._state.contentPage.newText = text;
-        this._callsubscriber();
-    },
     subscribe(observer){
         this._callsubscriber = observer; // паттерн observer (наблюдатель)
+    },
+
+    dispatch(action){  // единственный интерфейс изменения state
+        if(action.type === 'ADD_NEWS'){
+            let contentPage = this._state.contentPage;
+            let currentNews = contentPage.news;
+            currentNews.push({
+                    id: currentNews[currentNews.length - 1].id + 1,
+                    title: contentPage.newText === "" ? "- No title -" : contentPage.newText
+                }
+            );
+            this._state.contentPage.newText = '';
+            this._callsubscriber();
+
+        }
+        else if(action.type === 'UPDATE_TEXT'){
+            this._state.contentPage.newText = action.text;
+            this._callsubscriber();
+        }
+
     }
+
 }
 
 export default store;
