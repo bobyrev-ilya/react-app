@@ -16,7 +16,11 @@ const App = (props) => {
                     <Routes>
                         <Route path='/' element={<Info/>}/>
                         <Route path='/info' element={<Info/>}/>
-                        <Route path='/content/*' element={<Content state={props.state.contentPage}/>}/>
+                        <Route path='/content/*'
+                               element={<Content
+                                        state={props.state.contentPage}
+                                        addNews={props.addNews}
+                               />}/>
                     </Routes>
                 </div>
             </div>
