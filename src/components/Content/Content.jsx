@@ -1,18 +1,18 @@
 import React from "react";
 import s from "./Content.module.css"
 import NewsItem from "./NewsItem/NewsItem";
-
-let newsElement = React.createRef();
+import {addNewActionCreator, updateTextActionCreator} from "../../redux/state";
 
 const Content = (props) => {
-    debugger
+    let newsElement = React.createRef();
+
     let addNew = () => {
-        props.dispatch({ type: 'ADD_NEWS' });
+        props.dispatch(addNewActionCreator());
     }
 
     let onPostChange = () => {
         let text = newsElement.current.value;
-        props.dispatch({ type: 'UPDATE_TEXT', text: text });
+        props.dispatch(updateTextActionCreator(text));
     }
 
     return (

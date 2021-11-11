@@ -1,5 +1,9 @@
-let store ={
-    _state : {
+const ADD_NEWS = 'ADD_NEWS';
+const UPDATE_TEXT = 'UPDATE_TEXT';
+
+
+let store = {
+    _state: {
         contentPage: {
             news: [
                 {id: 1, title: "11 oct"},
@@ -15,15 +19,15 @@ let store ={
     _callsubscriber() {
     },
 
-    getState(){
+    getState() {
         return this._state;
     },
-    subscribe(observer){
+    subscribe(observer) {
         this._callsubscriber = observer; // паттерн observer (наблюдатель)
     },
 
-    dispatch(action){  // единственный интерфейс изменения state
-        if(action.type === 'ADD_NEWS'){
+    dispatch(action) {  // единственный интерфейс изменения state
+        if (action.type === ADD_NEWS) {
             let contentPage = this._state.contentPage;
             let currentNews = contentPage.news;
             currentNews.push({
@@ -34,8 +38,7 @@ let store ={
             this._state.contentPage.newText = '';
             this._callsubscriber();
 
-        }
-        else if(action.type === 'UPDATE_TEXT'){
+        } else if (action.type === UPDATE_TEXT) {
             this._state.contentPage.newText = action.text;
             this._callsubscriber();
         }
@@ -43,6 +46,12 @@ let store ={
     }
 
 }
+
+export const addNewActionCreator = () => ({type: ADD_NEWS})
+
+export const updateTextActionCreator = (text) =>
+    ({type: UPDATE_TEXT, text: text})
+
 
 export default store;
 
