@@ -6,8 +6,7 @@ import Info from "./components/Info/Info";
 import Content from "./components/Content/Content";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
-
-const App = () => {
+const App = (props) => {
     return (
         <Router>
             <div className="app-wrapper">
@@ -17,7 +16,7 @@ const App = () => {
                     <Routes>
                         <Route path='/' element={<Info/>}/>
                         <Route path='/info' element={<Info/>}/>
-                        <Route path='/content/*' element={<Content/>}/>
+                        <Route path='/content/*' element={<Content comments={props.comments} news={props.news}/>}/>
                     </Routes>
                 </div>
             </div>
