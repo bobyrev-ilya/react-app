@@ -7,10 +7,7 @@ import App from "./App";
 
 export let rendererEntire = () => {
     ReactDOM.render(
-        <App
-            state={store.getState()}
-            dispatch={store.dispatch.bind(store)}  //методы жестко связаны с контекстом (this) store
-        />,
+        <App store={store}/>,
         document.getElementById('root')
     );
 }

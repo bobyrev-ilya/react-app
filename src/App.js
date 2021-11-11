@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Info from "./components/Info/Info";
 import Content from "./components/Content/Content";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import ContentContainer from "./components/Content/ContentContainer";
 
 const App = (props) => {
     return (
@@ -16,11 +17,7 @@ const App = (props) => {
                     <Routes>
                         <Route path='/' element={<Info/>}/>
                         <Route path='/info' element={<Info/>}/>
-                        <Route path='/content/*'
-                               element={<Content
-                                        state={props.state.contentPage}
-                                        dispatch={props.dispatch}
-                               />}/>
+                        <Route path='/content/*' element={<ContentContainer store={props.store}/>}/>
                     </Routes>
                 </div>
             </div>
