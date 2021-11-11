@@ -20,6 +20,7 @@ const App = (props) => {
                                element={<Content
                                         state={props.state.contentPage}
                                         addNews={props.addNews}
+                                        updateText={props.updateText}
                                />}/>
                     </Routes>
                 </div>

@@ -6,11 +6,14 @@ import Comment from "./Comment/Comment";
 let newsElement = React.createRef();
 
 const Content = (props) => {
-
+    debugger
     let addNew = () => {
-        let newsHolder = newsElement.current.value;
-        debugger
-        props.addNews(newsHolder);
+        props.addNews();
+    }
+
+    let onPostChange = () => {
+        let text = newsElement.current.value;
+        props.updateText(text);
     }
 
     return (
@@ -18,7 +21,7 @@ const Content = (props) => {
             <div>
                 <h3>My news</h3>
                 <div>
-                    <textarea ref={newsElement}></textarea>
+                    <textarea ref={newsElement} onChange={onPostChange} value={props.state.newText}/>
                 </div>
                 <div>
                     <button onClick={addNew}>Add news</button>
@@ -26,9 +29,9 @@ const Content = (props) => {
             </div>
             <div className={s.news}>
                 {props.state.news.map(item => (<NewsItem id={item.id} title={item.title}/>))}
-                <div className={s.comment}>
-                    {props.state.comments.map(c => (<Comment desc={c.desc}/>))}
-                </div>
+                {/*<div className={s.comment}>*/}
+                {/*    {props.state.comments.map(c => (<Comment desc={c.desc}/>))}*/}
+                {/*</div>*/}
             </div>
         </div>
     );

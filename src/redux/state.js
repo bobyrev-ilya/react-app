@@ -1,4 +1,4 @@
-import {rendererEntire} from "../render";
+let rendererEntire;
 
 let state = {
     contentPage: {
@@ -9,18 +9,29 @@ let state = {
         comments: [
             {id: 1, desc: "comm 1"},
             {id: 2, desc: "comm 2"}
-        ]
+        ],
+        newText: 'sds'
     }
 }
 
-export let addNews = (text) => {
+export const addNews = () => {
     let currentNews = state.contentPage.news;
     state.contentPage.news.push({
-            id: currentNews[currentNews.length - 1].id,
-            title: text == "" ? "- No title -" : text
-    }
+            id: currentNews[currentNews.length - 1].id + 1,
+            title: state.contentPage.newText == "" ? "- No title -" : state.contentPage.newText
+        }
     );
-    rendererEntire(state);
+    updateText('')
+    rendererEntire();
+}
+
+export const updateText = (text) => {
+    state.contentPage.newText = text;
+    rendererEntire();
+}
+
+export const subscribe = (observer) =>{
+    rendererEntire = observer; // паттерн observer (наблюдатель)
 }
 
 export default state;

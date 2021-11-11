@@ -1,5 +1,4 @@
 .content{
     display: grid;
-    grid-template-columns: 4fr 8fr;
-    grid-template-rows: 5fr 5fr;
+    grid-template-rows: 1fr 2fr;
 }
