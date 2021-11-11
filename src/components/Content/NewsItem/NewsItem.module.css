@@ -1,0 +1,9 @@
+.news_item {
+    padding: 10px;
+    color: pink;
+    text-decoration: none;
+}
+
+.news_item:focus{
+    background-color: aqua;
+}

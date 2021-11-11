@@ -3,7 +3,12 @@ import React from 'react'
 const Info = (props) => {
     return (
         <div>
-            Info
+            <div>
+                Info
+            </div>
+            <div>
+                Description
+            </div>
         </div>
     );
 }
