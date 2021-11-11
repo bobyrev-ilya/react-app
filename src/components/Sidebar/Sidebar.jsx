@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../logo192.png";
 import sidebar from "./Sidebar.module.css"
+import {NavLink} from "react-router-dom";
 
 const Sidebar = () => {
     return (
@@ -9,14 +10,14 @@ const Sidebar = () => {
                 <img src={logo} alt={"logo"}/>
             </div>
             <div className={sidebar.item}>
-                <a href='/content'>
+                <NavLink to='/content'>
                     Content
-                </a>
+                </NavLink>
             </div>
             <div className={sidebar.item}>
-                <a href='/info'>
+                <NavLink to='/info'>
                     Info
-                </a>
+                </NavLink>
             </div>
         </nav>
     );

@@ -1,10 +1,16 @@
 .sidebar {
     grid-area: nav;
     background-color: darkgrey;
+    padding: 20px;
 }
 
-.item{
+.item a{
     color: red;
+    text-decoration:none;
+}
+
+.item a:focus{
+    color: blue;
 }
 
 img{
