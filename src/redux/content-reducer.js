@@ -1,6 +1,7 @@
 const ADD_NEWS = 'ADD_NEWS';
 const UPDATE_TEXT = 'UPDATE_TEXT';
 
+
 let initialState = {
         news: [
             {id: 1, title: "11 oct"},
@@ -13,27 +14,45 @@ let initialState = {
         newText: 'sds'
 }
 
+/**
+ *
+ * Создание редьюссера для обработки state/contentPage
+ * Редьюссер всегда принимает state и action, обязательно возвращает state (чистые функции не должны менять первоначальный объект)
+ */
+
 export const contentPageReducer = (state = initialState, action) => {
+
+    debugger
+    /**
+     * Делаю копию необходимой части state, т.к. обновление UI вызывается только при изменении сслыки на объект в props
+     */
+
     switch (action.type) {
         case ADD_NEWS: {
-            debugger
-            let currentNews = state.news;
-            currentNews.push({
-                    id: currentNews[currentNews.length - 1].id + 1,
-                    title: state.newText === "" ? "- No title -" : state.newText
+            let stateCopy = {...state};
+            stateCopy.news = [...state.news];
+            let news = stateCopy.news;
+            news.push({
+                    id: news[news.length - 1].id + 1,
+                    title: stateCopy.newText === "" ? "- No title -" : stateCopy.newText
                 }
             );
-            state.newText = '';
-            return state;
+            stateCopy.newText = '';
+            return stateCopy;
         }
         case UPDATE_TEXT: {
-            state.newText = action.text;
-            return state;
+            let stateCopy = {...state};
+            stateCopy.newText = action.text;
+            return stateCopy;
         }
         default:
             return state;
     }
 };
+
+/**
+ * Функции для создания корректных действий для редьюссеров
+ */
 
 export const addNewActionCreator = () => ({type: ADD_NEWS})
 

@@ -2,7 +2,9 @@ import React from "react";
 import s from "./Content.module.css"
 import NewsItem from "./NewsItem/NewsItem";
 
-//Презентационная компонента (должна содержать только данные + callback'и)
+/**
+ * Презентационная компонента (должна содержать только данные + callback'и)
+*/
 
 const Content = (props) => {
 

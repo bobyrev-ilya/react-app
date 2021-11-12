@@ -1,29 +1,37 @@
 import React from "react";
-import {addNewActionCreator, updateTextActionCreator} from "../../redux/content-reducer";
 import Content from "./Content";
+import {addNewActionCreator, updateTextActionCreator} from "../../redux/content-reducer";
+import {connect} from "react-redux";
 
-//Контеерная компонента
+/**
+ * Контеерная компонента
+ * @description
+ * Создаем контейнер с помощью connect(), передавая props через возвращаемые объекты mapStateToProps и dispatch через mapDispatchToProps
+ * Второй вызов "()" требуется для опеределения к какой презентационной компоненте принадлежит контейнер
+ *
+ * @method connect вызывает локальный subscribe
+ * Страница перерисовывается только в случае изменения ссылки на объект
+ */
 
-const ContentContainer = (props) => {
 
-    let state = props.store.getState();
-
-    let addNew = () => {
-        props.store.dispatch(addNewActionCreator());
+const mapStateToProps = (state) => {
+    return {
+        newText: state.contentPage.newText,
+        news: state.contentPage.news
     }
-
-    let onPostChange = (text) => {
-        props.store.dispatch(updateTextActionCreator(text));
-    }
-
-    return (
-        <Content
-            updateNew={onPostChange}
-            createNew={addNew}
-            newText={state.contentPage.newText}
-            news={state.contentPage.news}
-        />
-    );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createNew: () => {
+            dispatch(addNewActionCreator());
+        },
+        updateNew: (text) => {
+            dispatch(updateTextActionCreator(text));
+        }
+    }
+}
+
+const ContentContainer = connect(mapStateToProps, mapDispatchToProps)(Content);
 
 export default ContentContainer
