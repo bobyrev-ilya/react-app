@@ -3,20 +3,19 @@ const UPDATE_TEXT = 'UPDATE_TEXT';
 
 
 let initialState = {
-        news: [
-            {id: 1, title: "11 oct"},
-            {id: 2, title: "12 oct"}
-        ],
-        comments: [
-            {id: 1, desc: "comm 1"},
-            {id: 2, desc: "comm 2"}
-        ],
-        newText: 'sds'
+    news: [
+        {id: 1, title: "11 oct"},
+        {id: 2, title: "12 oct"}
+    ],
+    comments: [
+        {id: 1, desc: "comm 1"},
+        {id: 2, desc: "comm 2"}
+    ],
+    newText: 'sds'
 }
 
 /**
- *
- * Создание редьюссера для обработки state/contentPage
+ * Создание редьюссера для обработки state/contentPage (1 страница = 1 редьюссер)
  * Редьюссер всегда принимает state и action, обязательно возвращает state (чистые функции не должны менять первоначальный объект)
  */
 
@@ -24,26 +23,47 @@ export const contentPageReducer = (state = initialState, action) => {
 
     debugger
     /**
-     * Делаю копию необходимой части state, т.к. обновление UI вызывается только при изменении сслыки на объект в props
+     * Делаю копию необходимой части state в соответветвующем обработчике действия (обработчик должен иметь только копию того объекта, который планируется изменять)
+     * т.к. обновление UI вызывается только при изменении сслыки на объект в props
      */
+    let stateCopy;
 
     switch (action.type) {
         case ADD_NEWS: {
-            let stateCopy = {...state};
-            stateCopy.news = [...state.news];
-            let news = stateCopy.news;
-            news.push({
-                    id: news[news.length - 1].id + 1,
-                    title: stateCopy.newText === "" ? "- No title -" : stateCopy.newText
-                }
-            );
-            stateCopy.newText = '';
-            return stateCopy;
+
+            let text = state.newText;
+
+            /**
+             * Изменяем новый текст + news и сразу возвращаем => соответствующая копия ниже
+             */
+            return {
+                /**
+                 * Поверхностно копируем state
+                 */
+                ...state,
+
+                /**
+                 * Апдейтим копию state новыми news и newText
+                 */
+                news: [...state.news,
+                    {
+                        id: state.news[state.news.length - 1].id + 1,
+                        title: text === "" ? "- No title -" : text
+                    }
+                ],
+                newText: ''
+            };
         }
         case UPDATE_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.newText = action.text;
-            return stateCopy;
+
+            /**
+             * Создаем копию и сразу изменяем текст
+             */
+            return {
+                ...state,
+                newText: action.text
+            };
+
         }
         default:
             return state;
