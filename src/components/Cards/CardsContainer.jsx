@@ -1,16 +1,16 @@
 import React from "react";
-import Cards from "./Cards";
 import {cancelFavouriteAC, makeFavouriteAC, setCardsAC} from "../../redux/cards-reducer";
 import {connect} from "react-redux";
+import CardsC from "./Cards";
 
 let mapStateToProps = (state) => {
-    return{
-        cards:state.cardsPage.cards
+    return {
+        cards: state.cardsPage.cards
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
-    return{
+    return {
         favourite: (cardId) => {
             dispatch(makeFavouriteAC(cardId));
         },
@@ -23,4 +23,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cards)
+export default connect(mapStateToProps, mapDispatchToProps)(CardsC)
