@@ -1,11 +1,13 @@
 import {combineReducers, createStore} from "redux";
 import {contentPageReducer} from "./content-reducer";
+import {cardsReducer} from "./cards-reducer";
 
 /**
  * Собираем все редьюсеры (обработчики) в один объект
  */
 let reducers = combineReducers({
-    contentPage : contentPageReducer
+    contentPage : contentPageReducer,
+    cardsPage: cardsReducer
 });
 
 /**

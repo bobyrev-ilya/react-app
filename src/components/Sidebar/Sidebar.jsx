@@ -19,6 +19,11 @@ const Sidebar = () => {
                     Info
                 </NavLink>
             </div>
+            <div className={sidebar.item}>
+                <NavLink to='/cards'>
+                    Cards
+                </NavLink>
+            </div>
         </nav>
     );
 }

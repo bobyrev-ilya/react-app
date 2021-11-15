@@ -5,7 +5,6 @@ import NewsItem from "./NewsItem/NewsItem";
 /**
  * Презентационная компонента (должна содержать только данные + callback'и)
 */
-
 const Content = (props) => {
 
     let onAddNew = () => {
