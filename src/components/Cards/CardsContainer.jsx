@@ -1,11 +1,20 @@
 import React from "react";
-import {cancelFavouriteAC, makeFavouriteAC, setCardsAC} from "../../redux/cards-reducer";
+import {
+    cancelFavouriteAC,
+    makeFavouriteAC,
+    setCardsAC,
+    setCurrentPageAC,
+    setTotalCardsCountAC
+} from "../../redux/cards-reducer";
 import {connect} from "react-redux";
 import CardsC from "./Cards";
 
 let mapStateToProps = (state) => {
     return {
-        cards: state.cardsPage.cards
+        cards: state.cardsPage.cards,
+        pageSize: state.cardsPage.pageSize,
+        totalCardsCount: state.cardsPage.totalCardsCount,
+        currentPage: state.cardsPage.currentPage
     }
 }
 
@@ -19,6 +28,12 @@ let mapDispatchToProps = (dispatch) => {
         },
         setCards: (cards) => {
             dispatch(setCardsAC(cards));
+        },
+        setCurrentPage: (currentPage) => {
+            dispatch(setCurrentPageAC(currentPage));
+        },
+        setCardsCount: (totalCount) => {
+            dispatch(setTotalCardsCountAC(totalCount));
         }
     }
 }
