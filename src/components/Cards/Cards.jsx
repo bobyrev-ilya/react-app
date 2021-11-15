@@ -4,30 +4,27 @@ import axios from "axios";
 
 class Cards extends React.Component {
 
-    /**
-     * Запрос на сервер для получения списка кард
-     */
+    componentDidMount() {
 
-    getCards = () => {
-        if(this.props.cards.length == 0){
-            axios
-                .get("http://localhost:3000")
-                .then(response => {
-                    this.props.setCards(
-                        [
-                            {id: 1, favourited: false, number: "5656262614848", balance: 45522.62},
-                            {id: 2, favourited: false, number: "8996666565655", balance: 42.62},
-                            {id: 3, favourited: true, number: "5656262614846", balance: 0.0},
-                            {id: 4, favourited: false, number: "5656262614844", balance: 17.5}
-                        ]
-                    )
-                });
-        }
+        /**
+         * Запрос на сервер для получения списка кард
+         */
+        axios
+            .get("http://localhost:3000")
+            .then(response => {
+                this.props.setCards(
+                    [
+                        {id: 1, favourited: false, number: "5656262614848", balance: 45522.62},
+                        {id: 2, favourited: false, number: "8996666565655", balance: 42.62},
+                        {id: 3, favourited: true, number: "5656262614846", balance: 0.0},
+                        {id: 4, favourited: false, number: "5656262614844", balance: 17.5}
+                    ]
+                )
+            });
     }
 
     render() {
         return <div>
-            <button onClick={this.getCards}>Get Cards</button>
             {
                 this.props.cards.map(c => <div key={c.id}>
                     <div>
