@@ -1,11 +1,11 @@
 import React from "react";
 import {
-    cancelFavouriteAC,
-    makeFavouriteAC,
-    setCardsAC,
-    setCurrentPageAC,
-    setTotalCardsCountAC,
-    toggleIsFetchingAC
+    favourite,
+    unfavourite,
+    setCards,
+    setCurrentPage,
+    setCardsCount,
+    toggleIsFetching
 } from "../../redux/cards-reducer";
 import {connect} from "react-redux";
 import axios from "axios";
@@ -95,27 +95,21 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        favourite: (cardId) => {
-            dispatch(makeFavouriteAC(cardId));
-        },
-        unfavourite: (cardId) => {
-            dispatch(cancelFavouriteAC(cardId));
-        },
-        setCards: (cards) => {
-            dispatch(setCardsAC(cards));
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage));
-        },
-        setCardsCount: (totalCount) => {
-            dispatch(setTotalCardsCountAC(totalCount));
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingAC(isFetching));
-        }
-    }
+/**
+ * В dispatch кладем action-creator'ы
+ * let name = 5
+ * {                       {
+ *     name: name ===>        name
+ * }                        }
+ */
+
+let dispatch = {
+    favourite,
+    unfavourite,
+    setCards,
+    setCurrentPage,
+    setCardsCount,
+    toggleIsFetching
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardsContainer)
+export default connect(mapStateToProps, dispatch)(CardsContainer)

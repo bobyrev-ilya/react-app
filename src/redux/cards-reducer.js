@@ -69,14 +69,14 @@ export const cardsReducer = (state = initialState, action) => {
 };
 
 
-export const makeFavouriteAC = (cardId) => ({type: FAVOURITE, cardId})
+export const favourite = (cardId) => ({type: FAVOURITE, cardId})
 
-export const cancelFavouriteAC = (cardId) => ({type: UNFAVOURITE, cardId})
+export const unfavourite = (cardId) => ({type: UNFAVOURITE, cardId})
 
-export const setCardsAC = (cards) => ({type: SET_CARDS, cards})
+export const setCards = (cards) => ({type: SET_CARDS, cards})
 
-export const setCurrentPageAC = (currentPage) => ({type: SET_CUR_PAGE, currentPage})
+export const setCurrentPage = (currentPage) => ({type: SET_CUR_PAGE, currentPage})
 
-export const setTotalCardsCountAC = (totalCardsCount) => ({type: SET_TOTAL_CARDS, totalCardsCount})
+export const setCardsCount = (totalCardsCount) => ({type: SET_TOTAL_CARDS, totalCardsCount})
 
-export const toggleIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
