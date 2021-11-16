@@ -3,13 +3,15 @@ const UNFAVOURITE = 'UNFAVOURITE';
 const SET_CARDS = 'SET_CARDS';
 const SET_CUR_PAGE = 'SET_CUR_PAGE';
 const SET_TOTAL_CARDS = 'SET_TOTAL_CARDS';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 
 let initialState = {
     cards: [],
     pageSize: 3,
     totalCardsCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 
@@ -54,6 +56,11 @@ export const cardsReducer = (state = initialState, action) => {
                 ...state,
                 totalCardsCount: action.totalCardsCount
             }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
 
         default:
             return state;
@@ -71,3 +78,5 @@ export const setCardsAC = (cards) => ({type: SET_CARDS, cards})
 export const setCurrentPageAC = (currentPage) => ({type: SET_CUR_PAGE, currentPage})
 
 export const setTotalCardsCountAC = (totalCardsCount) => ({type: SET_TOTAL_CARDS, totalCardsCount})
+
+export const toggleIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})

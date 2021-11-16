@@ -4,11 +4,13 @@ import {
     makeFavouriteAC,
     setCardsAC,
     setCurrentPageAC,
-    setTotalCardsCountAC
+    setTotalCardsCountAC,
+    toggleIsFetchingAC
 } from "../../redux/cards-reducer";
 import {connect} from "react-redux";
 import axios from "axios";
 import Cards from "./Cards";
+import Preloader from "../common/Preloader/Preloader";
 
 /**
  * Классовая компонета для вызова API
@@ -36,37 +38,50 @@ class CardsContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios
-            .get("http://localhost:3000")
-            .then(() => {
-                let resp = this.generatePagination(this.props.currentPage, this.props.pageSize);
-                this.props.setCards(resp.data);
-                this.props.setCardsCount(resp.totalCount);
-            });
+        this.props.toggleIsFetching(true);
+
+        /**
+         * Таймаут для эмуляции медленной работы
+         */
+        setTimeout(() => {
+            axios
+                .get("http://localhost:3000")
+                .then(() => {
+                    let resp = this.generatePagination(this.props.currentPage, this.props.pageSize);
+                    this.props.toggleIsFetching(false);
+                    this.props.setCards(resp.data);
+                    this.props.setCardsCount(resp.totalCount);
+                });
+        }, 2000);
     }
 
     onPageChanged = (pageNumber) => {
 
         this.props.setCurrentPage(pageNumber);
+        this.props.toggleIsFetching(true);
 
-        axios
-            .get("http://localhost:3000")
-            .then(() => {
-                this.props.setCards(
-                    this.generatePagination(pageNumber, this.props.pageSize).data
-                );
-            });
+        setTimeout(() => {
+            axios
+                .get("http://localhost:3000")
+                .then(() => {
+                    this.props.setCards(this.generatePagination(pageNumber, this.props.pageSize).data);
+                    this.props.toggleIsFetching(false);
+                });
+        }, 2000);
     }
 
     render() {
-        return <Cards totalCardsCount={this.props.totalCardsCount}
-                      pageSize={this.props.pageSize}
-                      currentPage={this.props.currentPage}
-                      cards={this.props.cards}
-                      onPageChanged={this.onPageChanged}
-                      favourite={this.props.favourite}
-                      unfavourite={this.props.unfavourite}
-        />;
+        return <>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Cards totalCardsCount={this.props.totalCardsCount}
+                   pageSize={this.props.pageSize}
+                   currentPage={this.props.currentPage}
+                   cards={this.props.cards}
+                   onPageChanged={this.onPageChanged}
+                   favourite={this.props.favourite}
+                   unfavourite={this.props.unfavourite}
+            />
+        </>
     }
 }
 
@@ -75,7 +90,8 @@ let mapStateToProps = (state) => {
         cards: state.cardsPage.cards,
         pageSize: state.cardsPage.pageSize,
         totalCardsCount: state.cardsPage.totalCardsCount,
-        currentPage: state.cardsPage.currentPage
+        currentPage: state.cardsPage.currentPage,
+        isFetching: state.cardsPage.isFetching
     }
 }
 
@@ -95,9 +111,11 @@ let mapDispatchToProps = (dispatch) => {
         },
         setCardsCount: (totalCount) => {
             dispatch(setTotalCardsCountAC(totalCount));
+        },
+        toggleIsFetching: (isFetching) => {
+            dispatch(toggleIsFetchingAC(isFetching));
         }
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsContainer)
