@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Cards.module.css";
+import {NavLink} from "react-router-dom";
 
-let Cards = (props) =>{
+let Cards = (props) => {
 
     let pagesCount = Math.ceil(props.totalCardsCount / props.pageSize);
 
@@ -15,12 +16,14 @@ let Cards = (props) =>{
         <div>
             {pages.map(p =>
                 <span className={props.currentPage === p && styles.selectedPage}
-                      onClick={() => {props.onPageChanged(p)}}>{p}</span>)
+                      onClick={() => {
+                          props.onPageChanged(p)
+                      }}>{p}</span>)
             }
         </div>
         {
             props.cards.map(c => <div key={c.id}>
-                <div>
+                    <div>
                     <span>
                         <span>
                             {c.favourited ?
@@ -28,15 +31,18 @@ let Cards = (props) =>{
                                 <button onClick={() => props.favourite(c.id)}>Favoured</button>
                             }
                         </span>
-                        <span>
-                            {c.number}
-                        </span>
+                        <NavLink to={`/cards/${c.id}`}>
+                            <span>
+                                {c.number}
+                            </span>
+                        </NavLink>
                     </span>
+                    </div>
+                    <div>
+                        {`Баланс: ${c.balance}`}
+                    </div>
                 </div>
-                <div>
-                    {`Баланс: ${c.balance}`}
-                </div>
-            </div>)
+            )
         }
     </div>
 }

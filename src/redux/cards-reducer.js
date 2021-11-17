@@ -1,3 +1,6 @@
+import {generatePagination} from "../components/api/cards/card_api";
+import {getCards} from "../components/api/api";
+
 const FAVOURITE = 'FAVOURITE';
 const UNFAVOURITE = 'UNFAVOURITE';
 const SET_CARDS = 'SET_CARDS';
@@ -80,3 +83,32 @@ export const setCurrentPage = (currentPage) => ({type: SET_CUR_PAGE, currentPage
 export const setCardsCount = (totalCardsCount) => ({type: SET_TOTAL_CARDS, totalCardsCount})
 
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
+
+/**
+ * getCardsThunkCreator используется для замыкания внутреннего thunk и передачи входных параметров
+ */
+export const getCards = (currentPage, pageSize) =>{
+
+    /**
+     *
+     * @return thunk
+     * используется для диспатча action и доступа к DAL (data access layer) = API
+     * ассинхронная работа + dispatch
+     */
+    return (dispatch) => {
+
+        dispatch(toggleIsFetching(true));
+
+        /**
+         * Таймаут для эмуляции медленной работы
+         */
+        setTimeout(() => {
+            getCards().then(() => {
+                let resp = generatePagination(currentPage, pageSize);
+                dispatch(toggleIsFetching(false));
+                dispatch(setCards(resp.data));
+                dispatch(setCardsCount(resp.totalCount));
+            });
+        }, 2000);
+    }
+}
