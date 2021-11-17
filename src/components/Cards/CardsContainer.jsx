@@ -1,12 +1,12 @@
 import React from "react";
-import {favourite, getCards, unfavourite} from "../../redux/cards-reducer";
+import {favourite, getCards, setCurrentPage, unfavourite} from "../../redux/cards-reducer";
 import {connect} from "react-redux";
 import Cards from "./Cards";
 import Preloader from "../common/Preloader/Preloader";
 
 
 /**
- * Классовая компонета для вызова API
+ * Классовая компонета
  */
 class CardsContainer extends React.Component {
 
@@ -15,6 +15,7 @@ class CardsContainer extends React.Component {
     }
 
     onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber);
         this.props.getCards(pageNumber, this.props.pageSize)
     }
 
@@ -54,7 +55,8 @@ let mapStateToProps = (state) => {
 let dispatch = {
     favourite,
     unfavourite,
-    getCards
+    getCards,
+    setCurrentPage
 }
 
 

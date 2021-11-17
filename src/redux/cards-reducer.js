@@ -1,5 +1,5 @@
 import {generatePagination} from "../components/api/cards/card_api";
-import {getCards} from "../components/api/api";
+import {api} from "../components/api/api";
 
 const FAVOURITE = 'FAVOURITE';
 const UNFAVOURITE = 'UNFAVOURITE';
@@ -103,7 +103,7 @@ export const getCards = (currentPage, pageSize) =>{
          * Таймаут для эмуляции медленной работы
          */
         setTimeout(() => {
-            getCards().then(() => {
+            api.getCardsList().then(() => {
                 let resp = generatePagination(currentPage, pageSize);
                 dispatch(toggleIsFetching(false));
                 dispatch(setCards(resp.data));
