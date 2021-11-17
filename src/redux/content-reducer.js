@@ -11,7 +11,8 @@ let initialState = {
         {id: 1, desc: "comm 1"},
         {id: 2, desc: "comm 2"}
     ],
-    newText: 'sds'
+    newText: 'sds',
+    alertText: 'Через 15 минут будет перезагрузка сервера'
 }
 
 /**

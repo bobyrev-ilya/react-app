@@ -3,6 +3,7 @@ import {favourite, getCards, setCurrentPage, unfavourite} from "../../redux/card
 import {connect} from "react-redux";
 import Cards from "./Cards";
 import Preloader from "../common/Preloader/Preloader";
+import {withRebootAlert} from "../hoc/withRebootAlert";
 
 
 /**
@@ -20,6 +21,7 @@ class CardsContainer extends React.Component {
     }
 
     render() {
+        debugger
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Cards totalCardsCount={this.props.totalCardsCount}
@@ -44,6 +46,13 @@ let mapStateToProps = (state) => {
     }
 }
 
+let mapStateToPropsAlertBlock = (state) => {
+    return {
+        alertText: state.contentPage.alertText
+    }
+}
+
+
 /**
  * В dispatch кладем action-creator'ы
  * let name = 5
@@ -60,4 +69,4 @@ let dispatch = {
 }
 
 
-export default connect(mapStateToProps, dispatch)(CardsContainer)
+export default connect(mapStateToProps, dispatch)(connect(mapStateToPropsAlertBlock)(withRebootAlert(CardsContainer)));

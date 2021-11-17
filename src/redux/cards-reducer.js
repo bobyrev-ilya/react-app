@@ -19,7 +19,6 @@ let initialState = {
 
 
 export const cardsReducer = (state = initialState, action) => {
-    debugger
 
     switch (action.type) {
 
