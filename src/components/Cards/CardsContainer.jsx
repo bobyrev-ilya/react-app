@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import Cards from "./Cards";
 import Preloader from "../common/Preloader/Preloader";
 import {withRebootAlert} from "../hoc/withRebootAlert";
+import {compose} from "redux";
 
 
 /**
@@ -64,5 +65,10 @@ let dispatch = {
     setCurrentPage
 }
 
+/**
+ * compose работатет снизу вверрх CardsContainer -> упаковываем в withRebootAlert -> упаковывем в контеерную
+ */
 
-export default connect(mapStateToProps, dispatch)(withRebootAlert(CardsContainer));
+export default compose(connect(mapStateToProps, dispatch),
+                       withRebootAlert)
+                       (CardsContainer);
