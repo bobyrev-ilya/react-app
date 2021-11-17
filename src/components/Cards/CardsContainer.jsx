@@ -46,11 +46,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapStateToPropsAlertBlock = (state) => {
-    return {
-        alertText: state.contentPage.alertText
-    }
-}
+
 
 
 /**
@@ -69,4 +65,4 @@ let dispatch = {
 }
 
 
-export default connect(mapStateToProps, dispatch)(connect(mapStateToPropsAlertBlock)(withRebootAlert(CardsContainer)));
+export default connect(mapStateToProps, dispatch)(withRebootAlert(CardsContainer));

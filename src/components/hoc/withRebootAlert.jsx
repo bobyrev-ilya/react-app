@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 
 /**
  * HOC (high order component) для универсального добавления блока о перезагрузке
@@ -13,5 +14,11 @@ export const withRebootAlert = (Component) => {
         </>
     }
 
-    return RebootAlertWrapper;
+    let mapStateToPropsAlertBlock = (state) => {
+        return {
+            alertText: state.contentPage.alertText
+        }
+    }
+
+    return connect(mapStateToPropsAlertBlock)(RebootAlertWrapper);
 }
