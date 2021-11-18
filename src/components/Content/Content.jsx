@@ -1,7 +1,8 @@
 import React from "react";
 import s from "./Content.module.css"
 import NewsItem from "./NewsItem/NewsItem";
-import Status from "./Status.jsx"
+import Status_class from "./Status_class.jsx"
+import Status_function from "./Status_function";
 
 /**
  * Презентационная компонента (должна содержать только данные + callback'и)
@@ -21,7 +22,7 @@ const Content = (props) => {
     return (
         <>
             <div>
-                <Status status={`Hello`}/>
+                <Status_function status={`Hello`}/>
             </div>
             <div className={s.content}>
                 <div>

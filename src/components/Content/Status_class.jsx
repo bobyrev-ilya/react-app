@@ -1,6 +1,6 @@
 import React from "react";
 
-class Status extends React.Component {
+class Status_class extends React.Component {
     state = {
         editMode: false
     }
@@ -17,7 +17,6 @@ class Status extends React.Component {
 
 
     deactivateEditMode = () => {
-        debugger
         this.setState({
             editMode: false
         });
@@ -39,4 +38,4 @@ class Status extends React.Component {
     }
 }
 
-export default Status;
+export default Status_class;
