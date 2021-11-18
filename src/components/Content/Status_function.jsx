@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 let Status_function = (props) => {
     /**
@@ -6,6 +6,14 @@ let Status_function = (props) => {
      */
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
+
+
+    /**
+     * hook вызывается при изменении параметра в []
+     */
+    useEffect(() => {
+        alert("Режим изменения статуса");
+    },[status]);
 
     const activateEditMode = () => {
         setEditMode(true);
