@@ -1,6 +1,6 @@
 import React from "react";
 import Content from "./Content";
-import {addNewActionCreator, updateTextActionCreator} from "../../redux/content-reducer";
+import {createNew, updateNew} from "../../redux/content-reducer";
 import {connect} from "react-redux";
 
 /**
@@ -21,15 +21,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        createNew: () => {
-            dispatch(addNewActionCreator());
-        },
-        updateNew: (text) => {
-            dispatch(updateTextActionCreator(text));
-        }
-    }
+const mapDispatchToProps = {
+    createNew,
+    updateNew
 }
 
 const ContentContainer = connect(mapStateToProps, mapDispatchToProps)(Content);

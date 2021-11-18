@@ -74,7 +74,7 @@ export const contentPageReducer = (state = initialState, action) => {
  * Функции для создания корректных действий для редьюссеров
  */
 
-export const addNewActionCreator = () => ({type: ADD_NEWS})
+export const createNew = () => ({type: ADD_NEWS})
 
-export const updateTextActionCreator = (text) =>
+export const updateNew = (text) =>
     ({type: UPDATE_TEXT, text: text})
